@@ -169,29 +169,27 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-FastDFS的安装"
-         class="article article-type-post " itemscope
-         itemprop="blogPost">
+            <article id="post-FastDFS的安装" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
-    <header class="article-header">
-      
+      <header class="article-header">
+        
   
     <h1 class="article-title" itemprop="name">
       FastDFS的安装
     </h1>
   
 
-      
-      <a href="/2019/07/05/FastDFS的安装/" class="archive-article-date">
+        
+        <a href="/2019/07/05/FastDFS的安装/" class="archive-article-date">
   	<time datetime="2019-07-05T06:58:17.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-07-05</time>
 </a>
-      
-    </header>
+        
+      </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-      <h2 id="1-1FastDFS的安装"><a href="#1-1FastDFS的安装" class="headerlink" title="1.1FastDFS的安装"></a>1.1FastDFS的安装</h2><p>1、存储空间可扩展。<br>2、提供一个统一的访问方式。<br>使用FastDFS，分布式文件系统。存储空间可以横向扩展，可以实现服务器的高可用。支持每个节点有备份机。</p>
+        <h2 id="1-1FastDFS的安装"><a href="#1-1FastDFS的安装" class="headerlink" title="1.1FastDFS的安装"></a>1.1FastDFS的安装</h2><p>1、存储空间可扩展。<br>2、提供一个统一的访问方式。<br>使用FastDFS，分布式文件系统。存储空间可以横向扩展，可以实现服务器的高可用。支持每个节点有备份机。</p>
 <h2 id="1-1-1什么是FastDFS？"><a href="#1-1-1什么是FastDFS？" class="headerlink" title="1.1.1什么是FastDFS？"></a>1.1.1什么是FastDFS？</h2><p>FastDFS是用c语言编写的一款开源的分布式文件系统。FastDFS为互联网量身定制，充分考虑了冗余备份、负载均衡、线性扩容等机制，并注重高可用、高性能等指标，使用FastDFS很容易搭建一套高性能的文件服务器集群提供文件上传、下载等服务。</p>
 <a id="more"></a>
 <h2 id="1-1-2FastDFS架构"><a href="#1-1-2FastDFS架构" class="headerlink" title="1.1.2FastDFS架构"></a>1.1.2FastDFS架构</h2><p>FastDFS架构包括 Tracker server和Storage server。客户端请求Tracker server进行文件上传、下载，通过Tracker server调度最终由Storage server完成文件上传和下载。<br>    Tracker server作用是负载均衡和调度，通过Tracker server在文件上传时可以根据一些策略找到Storage server提供文件上传服务。可以将tracker称为追踪服务器或调度服务器。<br>    Storage server作用是文件存储，客户端上传的文件最终存储在Storage服务器上，Storage server没有实现自己的文件系统而是利用操作系统 的文件系统来管理文件。可以将storage称为存储服务器。<br><img src="https://img-blog.csdnimg.cn/20190529152431882.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQwNjUxNTM1,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>服务端两个角色：<br>Tracker：管理集群，tracker也可以实现集群。每个tracker节点地位平等。<br>收集Storage集群的状态。<br>Storage：实际保存文件<br>Storage分为多个组，每个组之间保存的文件是不同的。每个组内部可以有多个成员，组成员内部保存的内容是一样的，组成员的地位是一致的，没有主从的概念。<br><img src="https://img-blog.csdnimg.cn/20190529152511376.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQwNjUxNTM1,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
@@ -211,17 +209,16 @@
       
 
       
-      <div class="page-reward">
-        <a href="javascript:;" class="page-reward-btn tooltip-top">
-          <div class="tooltip tooltip-east">
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
             <span class="tooltip-item">
               赏
             </span>
             <span class="tooltip-content">
               <span class="tooltip-text">
                 <span class="tooltip-inner">
-                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i
-                      class="icon icon-quo-right"></i></p>
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
                   <div class="reward-box">
                     
                     
@@ -230,8 +227,8 @@
               </span>
             </span>
           </div>
-        </a>
-      </div>
+          </a>
+        </div>
       
     </div>
     <div class="article-info article-info-index">
@@ -257,7 +254,7 @@
       
 
       
-      
+        
 <div class="share-btn share-icons tooltip-left">
   <div class="tooltip tooltip-east">
     <span class="tooltip-item">
@@ -313,7 +310,7 @@
   </div>
 </article>
 
-
+  
 <nav id="article-nav">
   
     <a href="/2019/07/05/MongoDB安装无法注册Windows服务-解决办法/" id="article-nav-newer" class="article-nav-link-wrap">
@@ -365,31 +362,36 @@
 
 
 
+  
 
+  
 
+  
+
+  
+
+  
 
 
 <div id="gitalk-container"></div>
-<link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+<div id="gitalk-container" style="padding: 0px 30px 0px 30px;"></div>
 
-<script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
-
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+<script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
 <script type="text/javascript">
-  var gitalk = new Gitalk({
-    clientID: '67fec0a1195dcda93e68',
-    clientSecret: '928d18e1f949a3e399ad9b096696954acdfe272c',
-    repo: 'comment.github.io',
-    owner: '',
-    admin: ainimini,
-    id: ,
-    labels: 'gitalk',
-    perPage: 15,
-    pagerDirection: 'last',
-    createIssueManually: true,
-    distractionFreeMode: false
-  })
 
-  gitalk.render('gitalk-container')
+  if(true){
+    var gitalk = new Gitalk({
+      clientID: '67fec0a1195dcda93e68',
+      clientSecret: '928d18e1f949a3e399ad9b096696954acdfe272c',
+      repo: 'comment.github.io',
+      owner: 'ainimini',
+      admin: ['[&#39;ainimini&#39;,&#39;ainimini&#39;]'],
+      id: 'Fri Jul 05 2019 14:58:17 GMT+0800',
+      distractionFreeMode: 'true'
+    })
+    gitalk.render('gitalk-container')
+  }
 </script>
 
 
@@ -482,6 +484,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Blog</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Java</a>
               </li>
              
@@ -491,14 +501,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Server</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Blog</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
               </li>
             
             <div class="clearfix"></div>

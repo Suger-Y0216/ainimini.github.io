@@ -162,29 +162,27 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-MongoDB安装无法注册Windows服务-解决办法"
-         class="article article-type-post " itemscope
-         itemprop="blogPost">
+            <article id="post-MongoDB安装无法注册Windows服务-解决办法" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
-    <header class="article-header">
-      
+      <header class="article-header">
+        
   
     <h1 class="article-title" itemprop="name">
       MongoDB安装无法注册Windows服务 解决办法
     </h1>
   
 
-      
-      <a href="/2019/07/05/MongoDB安装无法注册Windows服务-解决办法/" class="archive-article-date">
+        
+        <a href="/2019/07/05/MongoDB安装无法注册Windows服务-解决办法/" class="archive-article-date">
   	<time datetime="2019-07-05T07:00:12.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-07-05</time>
 </a>
-      
-    </header>
+        
+      </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-      <h1 id="MongoDB安装无法注册Windows服务-解决办法"><a href="#MongoDB安装无法注册Windows服务-解决办法" class="headerlink" title="MongoDB安装无法注册Windows服务 解决办法"></a>MongoDB安装无法注册Windows服务 解决办法</h1><p>安装好MongoDB却执行不了遇到的问题：</p>
+        <h1 id="MongoDB安装无法注册Windows服务-解决办法"><a href="#MongoDB安装无法注册Windows服务-解决办法" class="headerlink" title="MongoDB安装无法注册Windows服务 解决办法"></a>MongoDB安装无法注册Windows服务 解决办法</h1><p>安装好MongoDB却执行不了遇到的问题：</p>
 <p>如果正常的过程在cmd中执行这串代码就可与运行，况且Windows服务注册成功，但我偏好遇到了奇葩问题</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mongod.exe --logpath D:\services\MongoDB\logs\mongod.log --logappend --dbpath D:\services\MongoDB\data --directoryperdb --serviceName MongoDB -insta</span><br></pre></td></tr></table></figure>
 
@@ -203,17 +201,16 @@
       
 
       
-      <div class="page-reward">
-        <a href="javascript:;" class="page-reward-btn tooltip-top">
-          <div class="tooltip tooltip-east">
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
             <span class="tooltip-item">
               赏
             </span>
             <span class="tooltip-content">
               <span class="tooltip-text">
                 <span class="tooltip-inner">
-                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i
-                      class="icon icon-quo-right"></i></p>
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
                   <div class="reward-box">
                     
                     
@@ -222,8 +219,8 @@
               </span>
             </span>
           </div>
-        </a>
-      </div>
+          </a>
+        </div>
       
     </div>
     <div class="article-info article-info-index">
@@ -249,7 +246,7 @@
       
 
       
-      
+        
 <div class="share-btn share-icons tooltip-left">
   <div class="tooltip tooltip-east">
     <span class="tooltip-item">
@@ -305,7 +302,7 @@
   </div>
 </article>
 
-
+  
 <nav id="article-nav">
   
     <a href="/2019/07/05/mongodb安装及5安装studio-3t和studio3t破解/" id="article-nav-newer" class="article-nav-link-wrap">
@@ -357,31 +354,36 @@
 
 
 
+  
 
+  
 
+  
+
+  
+
+  
 
 
 <div id="gitalk-container"></div>
-<link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+<div id="gitalk-container" style="padding: 0px 30px 0px 30px;"></div>
 
-<script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
-
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+<script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
 <script type="text/javascript">
-  var gitalk = new Gitalk({
-    clientID: '67fec0a1195dcda93e68',
-    clientSecret: '928d18e1f949a3e399ad9b096696954acdfe272c',
-    repo: 'comment.github.io',
-    owner: '',
-    admin: ainimini,
-    id: ,
-    labels: 'gitalk',
-    perPage: 15,
-    pagerDirection: 'last',
-    createIssueManually: true,
-    distractionFreeMode: false
-  })
 
-  gitalk.render('gitalk-container')
+  if(true){
+    var gitalk = new Gitalk({
+      clientID: '67fec0a1195dcda93e68',
+      clientSecret: '928d18e1f949a3e399ad9b096696954acdfe272c',
+      repo: 'comment.github.io',
+      owner: 'ainimini',
+      admin: ['[&#39;ainimini&#39;,&#39;ainimini&#39;]'],
+      id: 'Fri Jul 05 2019 15:00:12 GMT+0800',
+      distractionFreeMode: 'true'
+    })
+    gitalk.render('gitalk-container')
+  }
 </script>
 
 
@@ -474,6 +476,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Blog</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Java</a>
               </li>
              
@@ -483,14 +493,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Server</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Blog</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
               </li>
             
             <div class="clearfix"></div>
