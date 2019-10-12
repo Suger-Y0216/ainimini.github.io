@@ -17,7 +17,7 @@
 <meta property="og:description" content="Redis 前言  Redis（Remote Dictionary Server 远程字典服务器），Redis是一个开源的、高性能的（key-value）分布式内存数据库，基于内存上运行，Redis是单进程多路IO复用模型每秒写8万次，读11万次。">
 <meta property="og:locale" content="default">
 <meta property="og:image" content="//ainimini.github.io/assets/blogImg/Redis.jpg">
-<meta property="og:updated_time" content="2019-08-23T11:29:54.083Z">
+<meta property="og:updated_time" content="2019-08-27T12:22:03.493Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Redis">
 <meta name="twitter:description" content="Redis 前言  Redis（Remote Dictionary Server 远程字典服务器），Redis是一个开源的、高性能的（key-value）分布式内存数据库，基于内存上运行，Redis是单进程多路IO复用模型每秒写8万次，读11万次。">
@@ -205,7 +205,7 @@
 <p>Redis（Remote Dictionary Server 远程字典服务器），Redis是一个开源的、高性能的（key-value）<code>分布式内存数据库</code>，基于内存上运行，Redis是单进程多路IO复用模型每秒写8万次，读11万次。</p>
 <a id="more"></a>
 <p><img src="/assets/blogImg/Redis.jpg" alt></p>
-<h2 id="Redis的特点："><a href="#Redis的特点：" class="headerlink" title="Redis的特点："></a>Redis的特点：</h2><p>·Redis支持数据持久化，可以将内存中的数据存储到硬盘中，重启的时候可以再次加载进行使用（硬盘中的数据重新加载到内存中）<br>·Redis不仅仅支持简单的key-value类型的数据，同时还提供<code>List</code>、<code>Set</code>、<code>Sorted Set</code>、<code>Hash</code>等数据结构的储存<br>·Redis支持数据备份，即<code>master-slave</code>模式数据备份</p>
+<h2 id="Redis的特点："><a href="#Redis的特点：" class="headerlink" title="Redis的特点："></a>Redis的特点：</h2><p>·Redis支持数据持久化，可以将内存中的数据存储到硬盘中，重启的时候可以再次加载进行使用（硬盘中的数据重新加载到内存中）<br>·Redis不仅仅支持简单的key-value类型的数据，同时还提供<code>List</code>、<code>Set</code>、<code>Sorted Set</code>、<code>Hash</code>等数据结构的储存<br>·Redis支持数据备份，即<code>master-slave</code>模式数据备份<br>·Redis支持事务<br>·Redis支持分布式锁<br>·Redis支持消息订阅<br>·Redis不支持事务回滚（rollback）</p>
 <h2 id="Redis数据类型"><a href="#Redis数据类型" class="headerlink" title="Redis数据类型"></a>Redis数据类型</h2><blockquote>
 <p>Redis有五大数据类型（String、Set、Hash、Sorted Set）</p>
 </blockquote>
@@ -236,13 +236,13 @@
 <p>Redis提供了两个命令用于手动生成快照。SAVE和BGSAVE<br>SAVE和BGSAVE的区别</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">SAVE命令会使用同步的方法生成RDB文件，意味着会阻塞主进程，客户端无法连接Redis，等SAVE完成后，主进程才开始工作，客户端可以连接。（不建议在生产环节使用）</span><br><span class="line"></span><br><span class="line">BGSAVE命令执行后，Redis会fork一个子进程，原来的Redis进程（父进程）继续处理客户端的请求，而子进程负责将数据保存到硬盘中，然后退出。客户端可以通过LASTSAVE命令查看相关信息，判断BGSAVE命令是否成功。（BGSAVE方式比较适合线上的维护操作）</span><br></pre></td></tr></table></figure>
 
-<p>劣势：<br>在一定间隔时间做一次备份，所以如果redis意外down掉的话，就会丢失最后一次快照后的所有修改<br>fork的时候，内存中的数据被克隆了一份，大致2倍的膨胀性需要考虑</p>
+<p><code>优点</code>:<br>RDB文件是一个很简洁的单文件，它保存了某个时间点的Redis数据，很适合用于做备份。你可以设定一个时间点对RDB文件进行归档，这样就能在需要的时候很轻易的把数据恢复到不同的版本。<br>基于上面所描述的特性，RDB很适合用于灾备。单文件很方便就能传输到远程的服务器上。<br>RDB的性能很好，需要进行持久化时，主进程会fork一个子进程出来，然后把持久化的工作交给子进程，自己不会有相关的I/O操作。<br>比起AOF，在数据量比较大的情况下，RDB的启动速度更快。<br><code>劣势</code>：<br>在一定间隔时间做一次备份，所以如果redis意外down掉的话，就会丢失最后一次快照后的所有修改<br>fork的时候，内存中的数据被克隆了一份，大致2倍的膨胀性需要考虑</p>
 <h4 id="AOF"><a href="#AOF" class="headerlink" title="AOF"></a>AOF</h4><p>AOF持久化方式记录每次对服务器写的操作，每当服务器重启的时候会重新执行这些命令来恢复原始数据。<br>AOF持久化机制，在redis.conf配置文件中配置</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">appendfsync always 每当key发生改变，就会追加到AOF文件，性能会变差</span><br><span class="line">appendfsync everysec 每秒同步数据，最多只会丢失一秒中的数据</span><br><span class="line">appendfsync no 永不同步</span><br></pre></td></tr></table></figure>
 
-<p>劣势：<br>相同数据集的数据而言aof文件要远大于rdb文件，恢复速度慢于rdb<br>aof运行效率要慢于rdb,每秒同步策略效率较好，不同步效率和rdb相同</p>
+<p><code>优点</code>:<br>比RDB可靠。你可以制定不同的fsync(同步)策略：不进行fsync、每秒fsync一次和每次查询进行fsync。默认是每秒fsync一次。这意味着你最多丢失一秒钟的数据。<br>AOF日志文件是一个纯追加的文件。就算是遇到突然停电的情况，也不会出现日志的定位或者损坏问题。甚至如果因为某些原因（例如磁盘满了）命令只写了一半到日志文件里，我们也可以用<code>redis-check-aof</code>这个工具很简单的进行修复。<br>当AOF文件太大时，Redis会自动在后台进行重写。重写很安全，因为重写是在一个新的文件上进行，同时Redis会继续往旧的文件追加数据。新文件上会写入能重建当前数据集的最小操作命令的集合。当新文件重写完，Redis会把新旧文件进行切换，然后开始把数据写到新文件上。<br>AOF把操作命令以简单易懂的格式一条接一条的保存在文件里，很容易导出来用于恢复数据。例如我们不小心用<code>FLUSHALL</code>命令把所有数据刷掉了，只要文件没有被重写，我们可以把服务停掉，把最后那条命令删掉，然后重启服务，这样就能把被刷掉的数据恢复回来。<br><code>劣势</code>：<br>相同数据集的数据而言aof文件要远大于rdb文件，恢复速度慢于rdb<br>aof运行效率要慢于rdb,每秒同步策略效率较好，不同步效率和rdb相同</p>
 <h5 id="AOF重写"><a href="#AOF重写" class="headerlink" title="AOF重写"></a>AOF重写</h5><p>AOF采用文件追加方式，文件会越来越大为避免出现此种情况，新增了重写机制,当AOF文件的大小超过所设定的阈值时，Redis就会启动AOF文件的内容压缩，只保留可以恢复数据的最小指令集.可以使用命令bgrewriteaof。</p>
-<p>重写原理：<br>在执行BGREWRITEAOF命令时，Redis服务器会维护一个AOF重写缓存区，该缓存区会在子进程创建新的AOF文件期间，记录服务器所有写的命令，在创建新的AOF文件后，将缓存区所有内容追加到新的AOF文件末尾，AOF重写使得AOF文件的体积不会过大</p>
+<p><code>重写原理</code>：<br>在执行BGREWRITEAOF命令时，Redis服务器会维护一个AOF重写缓存区，该缓存区会在子进程创建新的AOF文件期间，记录服务器所有写的命令，在创建新的AOF文件后，将缓存区所有内容追加到新的AOF文件末尾，AOF重写使得AOF文件的体积不会过大</p>
 <p>AOF重写的触发条件：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">auto-aof-rewrite-percentage 100（当前 AOF 文件大小和最后一次 AOF 重写后的大小之间的比率大于等于指定的增长百分比）</span><br><span class="line"></span><br><span class="line">auto-aof-rewrite-min-size 64mb（当前 AOF 文件大小大于64M）[大公司基础3G]</span><br></pre></td></tr></table></figure>
 
@@ -252,7 +252,15 @@
 <blockquote>
 <p>Redis是否支持事务？</p>
 </blockquote>
-<p>Redis支持事务只是部分支持</p>
+<p>Redis支持事务只是部分支持<br>事务期间，可能会遇到两种命令错误：<br>    在调用<code>EXEC</code>命令之前出现错误<br>        ·例如，命令可能存在语法错误（参数数量错误，错误的命令名称…）；<br>        ·或者可能存在某些关键条件，如内存不足的情况（如果服务器使用maxmemory指令做了内存限制）<br>        示例如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&gt;MULTI</span><br><span class="line">+OK</span><br><span class="line">&gt;INCR a b c</span><br><span class="line">-ERR wrong number of arguments for &apos;incr&apos; command</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>这是由于INCR命令的语法错误，将在调用EXEC之前被检测出来，并终止事务（version2.6.5+）。</p>
+</blockquote>
+<p>·在调用<code>EXEC</code>命令之后出现错误。<br>例如，使用错误的值对某个<code>key</code>执行操作（如针对String值调用List操作）<br><code>EXEC</code>命令执行之后发生的错误并不会被特殊对待：<code>即使事务中的某些命令执行失败，其他命令仍会被正常执行</code>。<br>示例如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&gt;MULTI</span><br><span class="line">+OK</span><br><span class="line">&gt;SET a 3</span><br><span class="line">+QUEUED</span><br><span class="line">&gt;LPOP a</span><br><span class="line">+QUEUED</span><br><span class="line">&gt;EXEC</span><br><span class="line">*2</span><br><span class="line">+OK</span><br><span class="line">-ERR Operation against a key holding the wrong kind of value</span><br></pre></td></tr></table></figure>
+
 <p>Redis事务特性：<br>隔离性：Redis事务在执行的时候，不会出里其他命令，而等到命令都执行完了，在处理其他命令<br>原子性：redis事务在执行的中途遇到错误，不会回滚所有的命令，而是继续执行后续命令（说明Redis事务部分支持事务）</p>
 <h4 id="Watch监控"><a href="#Watch监控" class="headerlink" title="Watch监控"></a>Watch监控</h4><p>watch指令，类似乐观锁，，事务提交时，如果key值被客户端改变，比如某个list被客户端push/pop过，整个事务队列都不会执行。通过watch命令在执行之前监控多个keys，尚若多个key发生了变化，exec命令执行的事务都会被放弃，同时返回（Nullmulti-bulk）事务执行失败，这时需要再从缓存中提取新的记录，再次执行。</p>
 <p>####Redis主从复制（master/slave）<br><code>mastet</code>主写，<code>slave</code>主读<br>命令：<br><code>info replication</code> 查看是主机还是还是从机<br><code>slaveof</code> 主机号 端口号 变为（写的端口号）的从机<br>原理：<br>当主机挂了，其他从机待命，任选一个从机执行slave no one命令，该从机变为主机，其他从机还要执行 slaveof 主机号 端口号命令，成为现在主机的从机（当之前的主机恢复，需要重新执行命令）<br>哨兵模式：<br>Sentinel配置<br><code>touch一个sentinel.conf配置文件（内容：sentinel monitor 主机名自己写 127.0.0.1 6380 1）</code></p>
@@ -572,19 +580,7 @@
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Java</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">System</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">hexo</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Redis</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -592,7 +588,11 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Blog</a>
+                <a href="javascript:void(0)" class="js-tag color5">Java</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">System</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -608,11 +608,19 @@
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Blog</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Server</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">跨域</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Redis</a>
               </li>
             
             <div class="clearfix"></div>
