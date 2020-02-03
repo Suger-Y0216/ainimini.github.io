@@ -6,19 +6,22 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="//ainimini.github.io">
-  <title>Archives: 2019 | Ainimini&#39;s Blog</title>
+  <title>SpringBoot整合Quartz定时任务的实现 | Ainimini&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="新乡学院09级，在校大学生。擅长UI技能，研究后端端开发与前端性能。非专业视觉设计师。此为博客一枚。">
-<meta name="keywords" content="前端,js,jquery,javascript,vue,Element,redis,开发者,程序猿,程序媛,编程,代码,开源">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Ainimini&#39;s Blog">
-<meta property="og:url" content="//ainimini.github.io/archives/2019/index.html">
+  <meta name="description" content="SpringBoot整合Quartz定时任务的实现 前言  Quartz 设计有三个核心类，分别是 Scheduler（调度器）Job（任务）和 Trigger （触发器）">
+<meta name="keywords" content="Java,Quartz,触发器,SpringBoot">
+<meta property="og:type" content="article">
+<meta property="og:title" content="SpringBoot整合Quartz定时任务的实现">
+<meta property="og:url" content="//ainimini.github.io/2020/02/03/SpringBoot整合Quartz定时任务的实现/index.html">
 <meta property="og:site_name" content="Ainimini&#39;s Blog">
-<meta property="og:description" content="新乡学院09级，在校大学生。擅长UI技能，研究后端端开发与前端性能。非专业视觉设计师。此为博客一枚。">
+<meta property="og:description" content="SpringBoot整合Quartz定时任务的实现 前言  Quartz 设计有三个核心类，分别是 Scheduler（调度器）Job（任务）和 Trigger （触发器）">
 <meta property="og:locale" content="default">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200203182004390.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQwNjUxNTM1,size_16,color_FFFFFF,t_70">
+<meta property="og:updated_time" content="2020-02-03T10:25:34.254Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Ainimini&#39;s Blog">
-<meta name="twitter:description" content="新乡学院09级，在校大学生。擅长UI技能，研究后端端开发与前端性能。非专业视觉设计师。此为博客一枚。">
+<meta name="twitter:title" content="SpringBoot整合Quartz定时任务的实现">
+<meta name="twitter:description" content="SpringBoot整合Quartz定时任务的实现 前言  Quartz 设计有三个核心类，分别是 Scheduler（调度器）Job（任务）和 Trigger （触发器）">
+<meta name="twitter:image" content="https://img-blog.csdnimg.cn/20200203182004390.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQwNjUxNTM1,size_16,color_FFFFFF,t_70">
   
     <link rel="alternative" href="/atom.xml" title="Ainimini&#39;s Blog" type="application/atom+xml">
   
@@ -163,42 +166,135 @@
                   class="anm-canvas"></canvas>
         </div>
         <div id="js-content" class="content-ll">
-          
-  
-  
+          <article id="post-SpringBoot整合Quartz定时任务的实现"
+         class="article article-type-post " itemscope
+         itemprop="blogPost">
+  <div class="article-inner">
     
-    
+    <header class="article-header">
       
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2019" class="archive-year">2019</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/11/28/基于SpringBoot的七牛云上传文件/" class="archive-article-date">
-  	<time datetime="2019-11-28T08:31:26.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-11-28</time>
-</a>
-        </div>
-    	 
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/11/28/基于SpringBoot的七牛云上传文件/">基于SpringBoot的七牛云上传文件</a>
+    <h1 class="article-title" itemprop="name">
+      SpringBoot整合Quartz定时任务的实现
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+      <!--显示阅读次数-->
+      
+      <br/>
+      <a class="cloud-tie-join-count" href="javascript:void(0);" style="color:gray;font-size:14px;">
+        <span class="icon-sort"></span>
+        <span id="busuanzi_container_page_pv" style="color:#ef7522;font-size:14px;">
+            阅读数: <span id="busuanzi_value_page_pv"></span>次 &nbsp;&nbsp;
+  </span>
+      </a>
+      
+      <!--显示阅读次数完毕-->
+      
+      <a href="/2020/02/03/SpringBoot整合Quartz定时任务的实现/" class="archive-article-date">
+  	<time datetime="2020-02-03T10:14:14.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-02-03</time>
+</a>
+      
+    </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+      <h1 id="SpringBoot整合Quartz定时任务的实现"><a href="#SpringBoot整合Quartz定时任务的实现" class="headerlink" title="SpringBoot整合Quartz定时任务的实现"></a>SpringBoot整合Quartz定时任务的实现</h1><blockquote>
+<p>前言</p>
+</blockquote>
+<p>Quartz 设计有三个核心类，分别是 Scheduler（调度器）Job（任务）和 Trigger （触发器）</p>
+<a id="more"></a>
+<p><img src="https://img-blog.csdnimg.cn/20200203182004390.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQwNjUxNTM1,size_16,color_FFFFFF,t_70" alt="\[外链图片转存失败,源站可能有防盗链机制,建议将图片保存下来直接上传(img-iOwnoLjt-1580725163852)(https://images.pexels.com/photos/3619784/pexels-photo-3619784.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=1&amp;w=500)\]"></p>
+<h2 id="基础概念"><a href="#基础概念" class="headerlink" title="基础概念"></a>基础概念</h2><p><strong>Job</strong><br>具体需要处理的业务逻辑。</p>
+<p><strong>JobDetail</strong><br>详细的任务描述，包括名称，关联的Job，Job运行时所需要的参数等。</p>
+<p><strong>Trigger</strong><br>任务调度器，描述什么时候执行Job，多久执行一次。</p>
+<p>SimpleTrigger 设置重复次数，重复执行间隔时长<br>CronTrigger 设置Cron表达式<br><strong>Scheduler</strong><br>调度容器，Job与Trigger都需要在容器中注册，被容器统一管理。<br><strong>Cron表达式</strong><br>*/5 * * * * ?    每隔5秒执行一次<br>0 */1 * * * ?    每隔1分钟执行一次<br>0 0 23 * * ?    每天23点执行一次<br>0 0 23 ? * *    每天23点执行一次<br>0 0 23 * * ? *    每天23点执行一次<br>0 0 23 * * ? 2016    2016年每天23点执行一次<br>0 0 1 * * ?    每天1点执行一次<br>0 0 1 1 * ?    每月1号1点执行一次<br>0 * 14 * * ?    每天14:00点到14:59期间，每隔1分钟执行一次<br>0 0-5 14 * * ?    每天14:00点到14:05期间，每隔1分钟执行一次<br>0 0 23 L * ?    每月最后一天23点执行一次<br>0 0 1 ? * L    每周星期六1点执行一次<br>0 26,29,33 * * * ?    在26分、29分、33分执行一次<br>0 0 0,13,18,21 * * ?    每天的0点、13点、18点、21点都执行一次<br>0 0 0 ? * 6#3    每月第3个星期六</p>
+<h2 id="SpringBoot整合Quartz"><a href="#SpringBoot整合Quartz" class="headerlink" title="SpringBoot整合Quartz"></a>SpringBoot整合Quartz</h2><p><strong>依赖</strong></p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">&lt;!--quartz依赖--&gt;</span><br><span class="line">       &lt;dependency&gt;</span><br><span class="line">           &lt;groupId&gt;org.quartz-scheduler&lt;/groupId&gt;</span><br><span class="line">           &lt;artifactId&gt;quartz&lt;/artifactId&gt;</span><br><span class="line">           &lt;version&gt;2.2.1&lt;/version&gt;</span><br><span class="line">       &lt;/dependency&gt;</span><br><span class="line"></span><br><span class="line">       &lt;!--Scheduler--&gt;</span><br><span class="line">       &lt;dependency&gt;</span><br><span class="line">           &lt;groupId&gt;org.springframework&lt;/groupId&gt;</span><br><span class="line">           &lt;artifactId&gt;spring-context-support&lt;/artifactId&gt;</span><br><span class="line">       &lt;/dependency&gt;</span><br><span class="line"></span><br><span class="line">       &lt;!--spring tx 坐标--&gt;</span><br><span class="line">       &lt;dependency&gt;</span><br><span class="line">           &lt;groupId&gt;org.springframework&lt;/groupId&gt;</span><br><span class="line">           &lt;artifactId&gt;spring-tx&lt;/artifactId&gt;</span><br><span class="line">       &lt;/dependency&gt;</span><br></pre></td></tr></table></figure>
+
+<h2 id="创建一个定时任务类"><a href="#创建一个定时任务类" class="headerlink" title="创建一个定时任务类"></a>创建一个定时任务类</h2><blockquote>
+<p>所需要的定时任务的Service层放在Job类中，Quartz就会去执行该任务。</p>
+</blockquote>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">QuartzJob</span> <span class="title">implements</span> <span class="title">Job</span> &#123;</span></span><br><span class="line"></span><br><span class="line">    @Autowired</span><br><span class="line">    <span class="keyword">private</span> SysVaccineInfoService sysVaccineInfoService;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">execute</span><span class="params">(JobExecutionContext jobExecutionContext)</span> throws JobExecutionException </span>&#123;</span><br><span class="line">        <span class="comment">/**</span></span><br><span class="line"><span class="comment">         * @title: 疫苗定时任务</span></span><br><span class="line"><span class="comment">         * @description: 疫苗定时任务 server层的vaccineDateQuartz方法</span></span><br><span class="line"><span class="comment">         * @author: X</span></span><br><span class="line"><span class="comment">         * @updateTime: 2019/12/8 1:10</span></span><br><span class="line"><span class="comment">         * @return: void</span></span><br><span class="line"><span class="comment">         * @param: [jobExecutionContext]</span></span><br><span class="line"><span class="comment">         * @throws:</span></span><br><span class="line"><span class="comment">         */</span></span><br><span class="line">        sysVaccineInfoService.vaccineDateQuartz();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="Quartz配置类"><a href="#Quartz配置类" class="headerlink" title="Quartz配置类"></a>Quartz配置类</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br></pre></td><td class="code"><pre><span class="line">@Configuration</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">QuartzConfig</span> &#123;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * @description: 创建job对象</span></span><br><span class="line"><span class="comment">     * @author: X</span></span><br><span class="line"><span class="comment">     * @updateTime: 2019/12/9 19:47</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    @Bean</span><br><span class="line">    <span class="function"><span class="keyword">public</span> JobDetailFactoryBean <span class="title">jobDetailFactoryBean</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        JobDetailFactoryBean factory = <span class="keyword">new</span> JobDetailFactoryBean();</span><br><span class="line">        <span class="comment">//关联自己的job类</span></span><br><span class="line">        factory.setJobClass(QuartzJob.class);</span><br><span class="line">        <span class="keyword">return</span> factory;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * @description: 创建Trigger对象</span></span><br><span class="line"><span class="comment">     * @author: X</span></span><br><span class="line"><span class="comment">     * @updateTime: 2019/12/9 19:49</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="comment">/*@Bean</span></span><br><span class="line"><span class="comment">    public SimpleTriggerFactoryBean simpleTriggerFactoryBean(JobDetailFactoryBean jobDetailFactoryBean) &#123;</span></span><br><span class="line"><span class="comment">        SimpleTriggerFactoryBean factory = new SimpleTriggerFactoryBean();</span></span><br><span class="line"><span class="comment">        //关联JobDetail对象</span></span><br><span class="line"><span class="comment">        factory.setJobDetail(jobDetailFactoryBean.getObject());</span></span><br><span class="line"><span class="comment">        //执行时间（毫秒）</span></span><br><span class="line"><span class="comment">        factory.setRepeatInterval(2000);</span></span><br><span class="line"><span class="comment">        //执行次数</span></span><br><span class="line"><span class="comment">        factory.setRepeatCount(5);</span></span><br><span class="line"><span class="comment">        return factory;</span></span><br><span class="line"><span class="comment">    &#125;*/</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * @description: 创建Cron Trigger</span></span><br><span class="line"><span class="comment">     * @author: X</span></span><br><span class="line"><span class="comment">     * @updateTime: 2019/12/9 19:48</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    @Bean</span><br><span class="line">    <span class="function"><span class="keyword">public</span> CronTriggerFactoryBean <span class="title">cronTriggerFactoryBean</span><span class="params">(JobDetailFactoryBean jobDetailFactoryBean)</span> </span>&#123;</span><br><span class="line">        CronTriggerFactoryBean factory = <span class="keyword">new</span> CronTriggerFactoryBean();</span><br><span class="line">        <span class="comment">//关联JobDetail对象</span></span><br><span class="line">        factory.setJobDetail(jobDetailFactoryBean.getObject());</span><br><span class="line">        <span class="comment">//执行时间（毫秒）</span></span><br><span class="line">        factory.setCronExpression(<span class="string">"0 0 0 * * ? *"</span>);</span><br><span class="line">        <span class="keyword">return</span> factory;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * @description: 创建Scheduler对象</span></span><br><span class="line"><span class="comment">     * @author: X</span></span><br><span class="line"><span class="comment">     * @updateTime: 2019/12/9 19:48</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    @Bean</span><br><span class="line">    <span class="function"><span class="keyword">public</span> SchedulerFactoryBean <span class="title">schedulerFactoryBean</span><span class="params">(CronTriggerFactoryBean cronTriggerFactoryBean, MyAdaptableJobFactory myAdaptableJobFactory)</span> </span>&#123;</span><br><span class="line">        SchedulerFactoryBean factory = <span class="keyword">new</span> SchedulerFactoryBean();</span><br><span class="line">        <span class="comment">//关联trigger</span></span><br><span class="line">        factory.setTriggers(cronTriggerFactoryBean.getObject())</span><br><span class="line">        factory.setJobFactory(myAdaptableJobFactory);</span><br><span class="line">        <span class="keyword">return</span> factory;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">factory.setJobFactory(myAdaptableJobFactory);<span class="comment">//重写AdaptableJobFactory后面会有介绍原因</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>运行程序此时需要注意会产生异常（空指针异常），原因是service层没有注入进来</p>
+</blockquote>
+<p>JobDetailFactoryBean实例化job类（QuartzJob.class）时没有将该方法注入到Spring容器中。所以重写<strong>AdaptableJobFactory</strong>方法将实例化的任务对象手动的添加到SpringIOC容器中并完成对象注入。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">@Component(<span class="string">"myAdaptableJobFactory"</span>)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyAdaptableJobFactory</span> <span class="title">extends</span> <span class="title">AdaptableJobFactory</span> &#123;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">//AutowireCapableBeanFactory 将对象添加到SpringIOC容器中 并且完成对象注入</span></span><br><span class="line">    @Autowired</span><br><span class="line">    <span class="keyword">private</span> AutowireCapableBeanFactory autowireCapableBeanFactory;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * @title:</span></span><br><span class="line"><span class="comment">     * @description: 该方法需要将实例化的任务对象手动的添加到SpringIOC容器中并完成对象注入</span></span><br><span class="line"><span class="comment">     * @author: X</span></span><br><span class="line"><span class="comment">     * @updateTime: 2019/12/6 21:54</span></span><br><span class="line"><span class="comment">     * @return:</span></span><br><span class="line"><span class="comment">     * @param:</span></span><br><span class="line"><span class="comment">     * @throws:</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    @Override</span><br><span class="line">    <span class="function"><span class="keyword">protected</span> Object <span class="title">createJobInstance</span><span class="params">(TriggerFiredBundle bundle)</span> throws Exception </span>&#123;</span><br><span class="line">        Object obj = super.createJobInstance(bundle);</span><br><span class="line">        <span class="comment">//将obj对象添加到SpringIOC容器中并完成对象注入</span></span><br><span class="line">        <span class="keyword">this</span>.autowireCapableBeanFactory.autowireBean(obj);</span><br><span class="line">        <span class="keyword">return</span> obj;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+
+      <!-- 增加版权声明 -->
+
+      
+      
+      <div class="declare">
+        <strong>本文作者：</strong>
+        
+        Aini
+        
+        <br>
+        <strong>本文链接：</strong>
+        <a rel="license" href="https://ainimini.github.io/2020/02/03/SpringBoot整合Quartz定时任务的实现/">https://ainimini.github.io/2020/02/03/SpringBoot整合Quartz定时任务的实现/</a>
+        <br>
+        <strong>版权声明：</strong>
+        本作品采用
+        <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议</a>
+        进行许可。转载请注明出处！
+        
+        <br>
+        <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="知识共享许可协议" style="border-width:0"
+                                                               src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png"/></a>
+        
+      </div>
+      
+      <!-- 增加版权声明结束 -->
+
+      
+      <div class="page-reward">
+        <a href="javascript:;" class="page-reward-btn tooltip-top">
+          <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i
+                      class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+        </a>
+      </div>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Quartz</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">触发器</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
@@ -208,229 +304,141 @@
 		</ul>
 	</div>
 
-          
+      <!--<span id="busuanzi_container_page_pv">
+       |阅读量(<span id="busuanzi_value_page_pv"></span>)
+      </span>-->
 
+      
+
+      
+
+      
+      
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://ainimini.github.io/2020/02/03/SpringBoot整合Quartz定时任务的实现/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
+
+<nav id="article-nav">
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/08/23/Redis/" class="archive-article-date">
-  	<time datetime="2019-08-22T17:05:03.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-23</time>
-</a>
+  
+    <a href="/2020/01/17/解决虚拟机网络连接不通/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">解决虚拟机网络连接不通</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/08/23/Redis/">Redis</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Redis</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
+        
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#SpringBoot整合Quartz定时任务的实现"><span class="toc-number">1.</span> <span class="toc-text">SpringBoot整合Quartz定时任务的实现</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#基础概念"><span class="toc-number">1.1.</span> <span class="toc-text">基础概念</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SpringBoot整合Quartz"><span class="toc-number">1.2.</span> <span class="toc-text">SpringBoot整合Quartz</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#创建一个定时任务类"><span class="toc-number">1.3.</span> <span class="toc-text">创建一个定时任务类</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Quartz配置类"><span class="toc-number">1.4.</span> <span class="toc-text">Quartz配置类</span></a></li></ol></li></ol>
+                    </div>
+                </span>
+            </div>
         </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/08/02/跨域原理及解决/" class="archive-article-date">
-  	<time datetime="2019-08-02T12:27:52.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-02</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/08/02/跨域原理及解决/">跨域原理及解决</a>
-    </h1>
-  
+        
+    </div>
+</aside>
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">跨域</a>
-        		</li>
-      		
-		</ul>
-	</div>
 
-          
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/07/18/My-Batis-逆向工程-生成代码流程（详细代码）/" class="archive-article-date">
-  	<time datetime="2019-07-18T09:36:13.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-07-18</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/07/18/My-Batis-逆向工程-生成代码流程（详细代码）/">My Batis 逆向工程 生成代码流程（详细代码）</a>
-    </h1>
-  
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Mybatis</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">maven</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
-        		</li>
-      		
-		</ul>
-	</div>
 
-          
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/07/08/hexo-yilia主题添加相册功能/" class="archive-article-date">
-  	<time datetime="2019-07-08T07:49:42.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-07-08</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/07/08/hexo-yilia主题添加相册功能/">hexo yilia主题添加相册功能</a>
-    </h1>
-  
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">hexo</a>
-        		</li>
-      		
-		</ul>
-	</div>
+<div id="gitalk-container"></div>
+<div id="gitalk-container" style="padding: 0px 30px 0px 30px;"></div>
 
-          
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+<script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+<script type="text/javascript">
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/07/07/Hexo-yilia主题-添加-Subnav-社交图标/" class="archive-article-date">
-  	<time datetime="2019-07-07T07:46:32.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-07-07</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/07/07/Hexo-yilia主题-添加-Subnav-社交图标/">Hexo+yilia主题 添加 Subnav 社交图标</a>
-    </h1>
-  
+  if (true) {
+    var gitalk = new Gitalk({
+      clientID: '4f2d1b008e731ac4bda2',
+      clientSecret: 'b28adbcf91c4205c4fc87ceb546b7819346e3dfb',
+      repo: 'ainimini.github.io',
+      owner: 'ainimini',
+      admin: ['ainimini'],
+      id: 'Mon Feb 03 2020 18:14:14 GMT+0800',
+      distractionFreeMode: 'false'
+    })
+    gitalk.render('gitalk-container')
+  }
+</script>
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">hexo</a>
-        		</li>
-      		
-		</ul>
-	</div>
 
-          
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-    
-    <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/archives/2019/page/2/">2</a><a class="extend next" rel="next" href="/archives/2019/page/2/">Next &raquo;</a>
-    </nav>
-  
 
 
         </div>
@@ -473,8 +481,8 @@
   var yiliaConfig = {
     mathjax: false,
     isHome: false,
-    isPost: false,
-    isArchive: true,
+    isPost: true,
+    isArchive: false,
     isTag: false,
     isCategory: false,
     open_in_new: true,
